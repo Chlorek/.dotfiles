@@ -1,0 +1,2 @@
+QUERY=$(curl -s 'http://raspberrypi/sensor/dht11.php')
+echo $(jq -r ".humidity,\"%\",.temperature.value,.temperature.unit" <<< $QUERY)

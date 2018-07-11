@@ -1,0 +1,13 @@
+#!/bin/bash
+TEMP="$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)"
+GPU_USE="$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader)"
+#GPU_NAME="$(nvidia-smi --query-gpu=name --format=csv,noheader)"
+#MEM_TOTAL="$(nvidia-smi --query-gpu=memory.total --format=csv,noheader)"
+#MEM_USED="$(nvidia-smi --query-gpu=memory.used --format=csv,noheader)"
+FAN_SPEED="$(nvidia-smi --query-gpu=fan.speed --format=csv,noheader)"
+FAN_SPEED_FLOAT="0."
+FAN_SPEED_FLOAT+=${FAN_SPEED::-2}
+FAN_RPM="$(echo ${FAN_SPEED_FLOAT}*3600 | bc)"
+#echo "<txt>GPU: <span fgcolor='#00B100'>${TEMP}°C</span> @ <span fgcolor='#00B100'>${GPU_USE}</span> \ <span fgcolor='#00B100'>${MEM_USED}</span> / <span fgcolor='#00B100'>${MEM_TOTAL}</span></txt>"
+#echo "<txt>GPU: <span fgcolor='#00B100'>${GPU_USE}</span> @ <span fgcolor='#00B100'>${TEMP}°C</span> x <span fgcolor='#00B100'>${FAN_RPM}</span> RPM</txt>"
+echo "<b>GPU ${GPU_USE}</b>  <b>${TEMP}°C</b>  <b>${FAN_RPM} RPM</b>"

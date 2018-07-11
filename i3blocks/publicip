@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "<b>$(dig +short myip.opendns.com @resolver1.opendns.com)</b>"
